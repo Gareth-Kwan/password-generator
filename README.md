@@ -1,18 +1,18 @@
-# module-3-challenge
+# Password Generator (module-3-challenge)
 
-<!-- # Acceptance Criteria
-GIVEN I need a new, secure password
-WHEN I click the button to generate a password
-THEN I am presented with a series of prompts for password criteria
-WHEN prompted for password criteria
-THEN I select which criteria to include in the password
-WHEN prompted for the length of the password
-THEN I choose a length of at least 8 characters and no more than 128 characters
-WHEN asked for character types to include in the password
-THEN I confirm whether or not to include lowercase, uppercase, numeric, and/or special characters
-WHEN I answer each prompt
-THEN my input should be validated and at least one character type should be selected
-WHEN all prompts are answered
-THEN a password is generated that matches the selected criteria
-WHEN the password is generated
-THEN the password is either displayed in an alert or written to the page --> -->
+This challenge encourages us to utilize the knowledge we learned about Javascript in the past week to create a password generator.
+
+# GitHub
+
+[GitHub Repository](https://github.com/Gareth0201?tab=repositories)
+[Deployed GitHub Application](https://gareth0201.github.io/module-3-challenge-password-generator/)
+
+# Screenshots
+
+## Landing Page
+
+![1](https://user-images.githubusercontent.com/108771904/190943645-6f031a7d-5c5e-4ea4-bf92-0d592dc7f182.jpg)
+
+## Working Application
+
+![2](https://user-images.githubusercontent.com/108771904/190943717-2db506ac-9c06-4d6e-9cb1-78d69923e008.jpg)
