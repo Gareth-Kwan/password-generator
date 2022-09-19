@@ -84,19 +84,25 @@ var special = [
   "}",
   " ^ ",
 ];
+var password;
+var finalPassword = "";
 
 // Write password to the #password input
 function writePassword() {
   // var password = generatePassword();
   // var passwordText = document.querySelector("#password");
   // passwordText.value = password;
-  var input = prompt("Please choose a length of at least 8 characters and no more than 128 characters.");
-  if (!input) {
+
+  // User inputs the password length and confirms the options for the password
+  var passlength = prompt("Please choose a length of at least 8 characters and no more than 128 characters.");
+  // Verify if the password length is acceptable
+  if (!passlength) {
     alert("Please enter a value.");
-  } else if (input < 8 || input > 128) {
-    input = alert("Please choose a length between 8 and 128!");
+  } else if (passlength < 8 || passlength > 128) {
+    passlength = alert("Please choose a length between 8 and 128!");
     return;
   }
+  // Confirm the rest of the requirements for the password
   var confirmLowercase = confirm("Do you want to include lowercase letters in your password?");
   var confirmUppercase = confirm("Do you want to include uppercase letters in your password?");
   var confirmNumber = confirm("Do you want to include numbers in your password?");
@@ -104,43 +110,58 @@ function writePassword() {
 
   // User declined all options
   if (!confirmLowercase && !confirmUppercase && !confirmNumber && !confirmSpecial) {
-    choice = alert("Please choose one of the previous options.");
+    password = alert("Please choose one of the previous options.");
 
-    // User accepts all options
+    // User chooses all options
   } else if (confirmLowercase && confirmUppercase && confirmNumber && confirmSpecial) {
-    choice;
+    password = lowercase.concat(uppercase, number, special);
 
-    // User accepts 3 out of 4 options
+    // User chooses 3 out of 4 options
   } else if (confirmLowercase && confirmUppercase && confirmNumber) {
+    password = lowercase.concat(uppercase, number);
   } else if (confirmLowercase && confirmUppercase && confirmSpecial) {
+    password = lowercase.concat(uppercase, special);
   } else if (confirmLowercase && confirmNumber && confirmSpecial) {
-  } else if (confirmUppercase && confirmNumber && confirmNumber) {
+    password = lowercase.concat(number, special);
+  } else if (confirmUppercase && confirmNumber && confirmSpecial) {
+    password = uppercase.concat(number, special);
   }
 
-  // User accepts 2 out of 4 options
+  // User chooses 2 out of 4 options
   else if (confirmLowercase && confirmUppercase) {
+    password = lowercase.concat(uppercase);
+    console.log(password);
   } else if (confirmLowercase && confirmNumber) {
+    password = lowercase.concat(number);
   } else if (confirmNumber && confirmUppercase) {
+    password = number.concat(uppercase);
   } else if (confirmLowercase && confirmSpecial) {
+    password = lowercase.concat(special);
   } else if (confirmSpecial && confirmUppercase) {
-  } else if (confirmNumber && confirmNumber) {
+    password = special.concat(uppercase);
+  } else if (confirmNumber && confirmSpecial) {
+    password = number.concat(special);
   }
 
-  // User accepts 1 out of 4 options
+  // User chooses 1 out of 4 options
   else if (confirmLowercase) {
+    password = lowercase;
   } else if (confirmUppercase) {
+    password = uppercase;
   } else if (confirmNumber) {
+    password = number;
   } else if (confirmSpecial) {
+    password = special;
   }
 
-  // else if  {
-  //   for (var i = 0; i < input.length; i++) {
-  //     var pickChoices = choices[Math.floor(Math.random() * choices.length)];
-  //     password.push(pickChoices);
-  //   }
-  // }
+  for (var i = 0; i < passlength.length; i++) {
+    finalPassword = password[Math.floor(Math.random() * passlength.length)];
+  }
 
-  return finalPassword;
+  function UserInput() {
+    document.getElementById("password").textContent = finalPassword;
+  }
+  UserInput();
 }
 
 // Add event listener to generate button
