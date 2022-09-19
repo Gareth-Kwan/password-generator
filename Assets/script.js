@@ -59,7 +59,7 @@ var uppercase = [
 // var uppercase = function (upper) {
 //   return upper.toUpperCase(lowercase);
 // };
-var number = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+var number = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 var special = [
   "~",
   "!",
@@ -72,34 +72,32 @@ var special = [
   "+",
   "/",
   ":",
-  " < ",
+  "<",
   "=",
-  " > ",
-  " ? ",
+  ">",
+  "?",
   "[",
   "]",
   "_",
   "{",
   "|",
   "}",
-  " ^ ",
+  "^",
 ];
 var password;
-var finalPassword = [];
 
 // Write password to the #password input
 function writePassword() {
   // var password = generatePassword();
   // var passwordText = document.querySelector("#password");
-  // passwordText.value = password;
-
+  var finalPassword = [];
   // User inputs the password length and confirms the options for the password
-  var passlength = prompt("Please choose a length of at least 8 characters and no more than 128 characters.");
+  var passLength = prompt("Please choose a length of at least 8 characters and no more than 128 characters.");
   // Verify if the password length is acceptable
-  if (!passlength) {
+  if (!passLength) {
     alert("Please enter a value.");
-  } else if (passlength < 8 || passlength > 128) {
-    passlength = alert("Please choose a length between 8 and 128!");
+  } else if (passLength < 8 || passLength > 128) {
+    passLength = alert("Please choose a length between 8 and 128!");
     return;
   }
   // Confirm the rest of the requirements for the password
@@ -175,9 +173,10 @@ function writePassword() {
     password = special;
   }
 
-  for (var i = 0; i < parseInt(passlength); i++) {
-    finalPassword[i] = password[Math.floor(Math.random() * parseInt(passlength))];
+  for (var i = 0; i < parseInt(passLength); i++) {
+    finalPassword[i] = password[Math.floor(Math.random() * parseInt(password.length))];
   }
+
   function UserInput() {
     document.getElementById("password").textContent = finalPassword.join("");
   }
