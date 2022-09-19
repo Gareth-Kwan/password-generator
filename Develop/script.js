@@ -85,7 +85,7 @@ var special = [
   " ^ ",
 ];
 var password;
-var finalPassword = "";
+var finalPassword = [];
 
 // Write password to the #password input
 function writePassword() {
@@ -113,53 +113,73 @@ function writePassword() {
     password = alert("Please choose one of the previous options.");
 
     // User chooses all options
-  } else if (confirmLowercase && confirmUppercase && confirmNumber && confirmSpecial) {
+  }
+  if (confirmLowercase && confirmUppercase && confirmNumber && confirmSpecial) {
     password = lowercase.concat(uppercase, number, special);
+    console.log(password);
 
     // User chooses 3 out of 4 options
-  } else if (confirmLowercase && confirmUppercase && confirmNumber) {
+  }
+  if (confirmLowercase && confirmUppercase && confirmNumber && !confirmSpecial) {
     password = lowercase.concat(uppercase, number);
-  } else if (confirmLowercase && confirmUppercase && confirmSpecial) {
+    console.log(password);
+  }
+  if (confirmLowercase && confirmUppercase && confirmSpecial && !confirmNumber) {
     password = lowercase.concat(uppercase, special);
-  } else if (confirmLowercase && confirmNumber && confirmSpecial) {
+    console.log(password);
+  }
+  if (confirmLowercase && confirmNumber && confirmSpecial && !confirmUppercase) {
     password = lowercase.concat(number, special);
-  } else if (confirmUppercase && confirmNumber && confirmSpecial) {
+    console.log(password);
+  }
+  if (confirmUppercase && confirmNumber && confirmSpecial && !confirmLowercase) {
     password = uppercase.concat(number, special);
+    console.log(password);
   }
 
   // User chooses 2 out of 4 options
-  else if (confirmLowercase && confirmUppercase) {
+  if (confirmLowercase && confirmUppercase && !confirmNumber && !confirmSpecial) {
     password = lowercase.concat(uppercase);
     console.log(password);
-  } else if (confirmLowercase && confirmNumber) {
+  }
+  if (confirmLowercase && confirmNumber && !confirmUppercase && !confirmSpecial) {
     password = lowercase.concat(number);
-  } else if (confirmNumber && confirmUppercase) {
+    console.log(password);
+  }
+  if (confirmNumber && confirmUppercase && !confirmLowercase && !confirmSpecial) {
     password = number.concat(uppercase);
-  } else if (confirmLowercase && confirmSpecial) {
+    console.log(password);
+  }
+  if (confirmLowercase && confirmSpecial && !confirmUppercase && !confirmNumber) {
     password = lowercase.concat(special);
-  } else if (confirmSpecial && confirmUppercase) {
+    console.log(password);
+  }
+  if (confirmSpecial && confirmUppercase && !confirmLowercase && !confirmNumber) {
     password = special.concat(uppercase);
-  } else if (confirmNumber && confirmSpecial) {
+  }
+  if (confirmNumber && confirmSpecial && !confirmUppercase && !confirmLowercase) {
     password = number.concat(special);
   }
 
   // User chooses 1 out of 4 options
-  else if (confirmLowercase) {
+  if (confirmLowercase && !confirmUppercase && !confirmNumber && !confirmSpecial) {
     password = lowercase;
-  } else if (confirmUppercase) {
+  }
+  if (confirmUppercase && !confirmLowercase && !confirmNumber && !confirmSpecial) {
     password = uppercase;
-  } else if (confirmNumber) {
+  }
+  if (confirmNumber && !confirmUppercase && !confirmLowercase && !confirmSpecial) {
     password = number;
-  } else if (confirmSpecial) {
+  }
+  if (confirmSpecial && !confirmNumber && !confirmUppercase && !confirmLowercase) {
     password = special;
   }
 
-  for (var i = 0; i < passlength.length; i++) {
-    finalPassword = password[Math.floor(Math.random() * passlength.length)];
+  for (var i = 0; i < parseInt(passlength); i++) {
+    finalPassword[i] = password[Math.floor(Math.random() * parseInt(passlength))];
   }
-
   function UserInput() {
-    document.getElementById("password").textContent = finalPassword;
+    document.getElementById("password").textContent = finalPassword.join("");
   }
   UserInput();
 }
