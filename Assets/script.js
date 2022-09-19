@@ -91,8 +91,26 @@ function writePassword() {
   // var password = generatePassword();
   // var passwordText = document.querySelector("#password");
   var finalPassword = [];
+  var passLength = "";
+
   // User inputs the password length and confirms the options for the password
+  //Option #1 - While Loop option, didn't quite work out :(
+  // while (passLength.length == 0 || parseInt(passLength) < 8 || parseInt(passLength) > 128) {
+  //   passLength = prompt("Please choose a length of at least 8 characters and no more than 128 characters.");
+  //   //Break out of the loop when you press esc
+  //   if (passLength === null) {
+  //     break;
+  //   }
+  // }
+  // passLength = parseInt(passLength);
+  // if (passLength == null) {
+  //   return;
+  // }
+  //Option #2 - Used a simple prompt declaration to inquire user's password length
   var passLength = prompt("Please choose a length of at least 8 characters and no more than 128 characters.");
+  if (passLength == null) {
+    return;
+  }
   // Verify if the password length is acceptable
   if (!passLength) {
     alert("Please enter a value.");
@@ -114,43 +132,34 @@ function writePassword() {
   }
   if (confirmLowercase && confirmUppercase && confirmNumber && confirmSpecial) {
     password = lowercase.concat(uppercase, number, special);
-    console.log(password);
 
     // User chooses 3 out of 4 options
   }
   if (confirmLowercase && confirmUppercase && confirmNumber && !confirmSpecial) {
     password = lowercase.concat(uppercase, number);
-    console.log(password);
   }
   if (confirmLowercase && confirmUppercase && confirmSpecial && !confirmNumber) {
     password = lowercase.concat(uppercase, special);
-    console.log(password);
   }
   if (confirmLowercase && confirmNumber && confirmSpecial && !confirmUppercase) {
     password = lowercase.concat(number, special);
-    console.log(password);
   }
   if (confirmUppercase && confirmNumber && confirmSpecial && !confirmLowercase) {
     password = uppercase.concat(number, special);
-    console.log(password);
   }
 
   // User chooses 2 out of 4 options
   if (confirmLowercase && confirmUppercase && !confirmNumber && !confirmSpecial) {
     password = lowercase.concat(uppercase);
-    console.log(password);
   }
   if (confirmLowercase && confirmNumber && !confirmUppercase && !confirmSpecial) {
     password = lowercase.concat(number);
-    console.log(password);
   }
   if (confirmNumber && confirmUppercase && !confirmLowercase && !confirmSpecial) {
     password = number.concat(uppercase);
-    console.log(password);
   }
   if (confirmLowercase && confirmSpecial && !confirmUppercase && !confirmNumber) {
     password = lowercase.concat(special);
-    console.log(password);
   }
   if (confirmSpecial && confirmUppercase && !confirmLowercase && !confirmNumber) {
     password = special.concat(uppercase);
@@ -173,10 +182,11 @@ function writePassword() {
     password = special;
   }
 
+  //Used a for loop to generate a password according to the length of the password using the concatenated string from above options
   for (var i = 0; i < parseInt(passLength); i++) {
     finalPassword[i] = password[Math.floor(Math.random() * parseInt(password.length))];
   }
-
+  //Used a function to write the password generated above in the text area in HTML.
   function UserInput() {
     document.getElementById("password").textContent = finalPassword.join("");
   }
